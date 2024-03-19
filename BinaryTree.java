@@ -37,30 +37,17 @@ public class BinaryTree {
 
     
     private Association<String, String> search(Node node, String key) {
-        if (node == null) {
-            return null;
+        if (node == null) return null;
+        // Buscar en el subárbol izquierdo primero
+        Association<String, String> leftResult = search(node.left, key);
+        if (leftResult != null) {
+            return leftResult;
         }
-        // Compara la clave del nodo actual con la clave que estás buscando
-        int comparison = key.compareTo(node.value.getKey());
-
-        // Si las claves coinciden, se encontró el valor, devuelve el objeto Association
-        if (comparison == 0) {
+        if (key.compareTo(node.value.getKey()) == 0) {
             return node.value;
         }
-        // Si la clave buscada es menor, busca en el subárbol izquierdo
-        else if (comparison < 0) {
-            return search(node.left, key);
-        }
-        // Si la clave buscada es mayor, busca en el subárbol derecho
-        else {
-            return search(node.right, key);
-        }
+        // Busca en el subárbol derecho
+        return search(node.right, key);
     }
-
-   
-
-
-    
-
     
 }
