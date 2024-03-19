@@ -3,6 +3,10 @@ public class Node {
     Node left;
     Node right;
 
+    /**
+     * 
+     * @param value Objeto de tipo Association
+     */
     Node(Association<String, String> value) {
         this.value = value;
         right = null;

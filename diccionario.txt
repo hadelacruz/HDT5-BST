@@ -1,4 +1,5 @@
 (house, casa)
+(world, mundo)
 (car, coche)
 (tree, árbol)
 (book, libro)
@@ -91,3 +92,4 @@
 (woman, mujer)
 (town, pueblo)
 (yes, si)
+(hello, hola)
