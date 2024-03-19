@@ -1,9 +1,9 @@
 
 public class BinaryTree {
-    Node root;
+     Node root;
 
     // Método para insertar un nodo en el árbol
-     private Node insert(Node node, Association<String, String> value) {
+     public Node insert(Node node, Association<String, String> value) {
         // Si el árbol está vacío, crea un nuevo nodo y devuelve
         if (node == null) {
             return new Node(value);
@@ -20,9 +20,7 @@ public class BinaryTree {
         else if (comparison > 0) {
             node.right = insert(node.right, value);
         }
-        // Si las llaves son iguales, puedes manejarlo como desees. En este ejemplo, no se permite duplicados.
-        // Aquí podrías decidir si quieres reemplazar el valor existente, ignorar el nuevo valor, etc.
-
+        
         return node;
     }
 
@@ -31,19 +29,38 @@ public class BinaryTree {
         root = insert(root, value);
     }
 
+  
+        
+    public Association<String, String> search(String key) {
+        return search(root, key);
+    }
+
     
-    // Método para recorrer el árbol en orden (in-order traversal)
-    private void inOrderTraversal(Node node) {
-        if (node != null) {
-            inOrderTraversal(node.left);
-            System.out.println(node.value.getKey() + ": " + node.value.getValue());
-            inOrderTraversal(node.right);
+    private Association<String, String> search(Node node, String key) {
+        if (node == null) {
+            return null;
+        }
+        // Compara la clave del nodo actual con la clave que estás buscando
+        int comparison = key.compareTo(node.value.getKey());
+
+        // Si las claves coinciden, se encontró el valor, devuelve el objeto Association
+        if (comparison == 0) {
+            return node.value;
+        }
+        // Si la clave buscada es menor, busca en el subárbol izquierdo
+        else if (comparison < 0) {
+            return search(node.left, key);
+        }
+        // Si la clave buscada es mayor, busca en el subárbol derecho
+        else {
+            return search(node.right, key);
         }
     }
 
-    // Método público para realizar un recorrido en orden del árbol
-    public void inOrderTraversal() {
-        inOrderTraversal(root);
-    }
+   
+
+
+    
+
     
 }
